@@ -90,7 +90,12 @@ It is possible to prolong the KYC period by waiting with the call of the finaliz
 
 MultiSignature Wallets
 ======================
-There are two Multisignature contracts deployed
+There will be two Multisignature contracts deployed. One for the main wallet where the Ether of the Crowdsale will be send to. The other one will store the team token.
+
+Vesting contracts
+=================
+The Company Token will be send to a vesting contract that will release the token after 12 month when called by the company multisignature wallet.
+
 
 
 Project Timeline
