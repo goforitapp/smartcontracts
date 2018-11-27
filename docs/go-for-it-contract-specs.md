@@ -50,8 +50,8 @@ Set Rate
 The token sale contract provides a function that enables the token
 contract owner to set the Token price at any time. The
 price represents the Token per ETH rate. With a target
-price of 0.05 $ per MERO we will have a rate of
-approximately 9,000 according to a price of approximately 115 $ per ETH.
+price of 0.0033 € per Token we will have a rate of
+approximately 280,000 according to a price of approximately 93 € per ETH.
 There is a sanity check, that allows to change the rate only by one order of magnitude up or down.
 
 
@@ -60,7 +60,7 @@ Token pools
 
   |Pool            |           Cap |distribution time                         |
   |----------------|---------------|------------------------------------------|
-  |private sale    | 5,511,842,425 | any time before end of the Crowdsale     |
+  |private sale    | 5,511,842,425 | at finalization into vesting contract    |
   |public sale     | 1,250,000,000 | between start and end date of Crowdsale  |
   |Bounty          |   181,250,000 | at finalization to company wallet        |
   |Team            | 1,100,000,000 | at finalization into vesting contract    |
@@ -108,9 +108,9 @@ Project Timeline
   |                      | Bounty contract deployment                        |
   |                      | Token sale contract deployment                    |
   |                      | Transfer of token ownership to token sale contract|
-  |                      | deplyoment of
-  |                      | Etherscan code verification   
-                      |
+  |                      | deplyoment of                                     |
+  |                      | Etherscan code verification                       |
+  |                      | Deployment of vesting and multisignature contract |
   |           201?-??-?? | Start of Crowdsale                                |
   |           201?-??-?? | End of Crowdsale                                  |
   |           201?-??-?? | Finalization                                      |
@@ -124,7 +124,6 @@ The following requirements have to be fulfilled at deployment time
 
 |Requirement                | Source  |       Value                              |
 |---------------------------|---------|------------------------------------------|
-
 |Name of Token              | GoForIt |                                          |
 |Symbol of Token            | GoForIt |                                          |
 |Prize of Token             | GoForIt |                                          |
