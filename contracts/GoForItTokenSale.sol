@@ -4,6 +4,7 @@ import "../node_modules/openzeppelin-solidity/contracts/token/ERC20/ERC20.sol";
 import "../node_modules/openzeppelin-solidity/contracts/crowdsale/distribution/FinalizableCrowdsale.sol";
 import "../node_modules/openzeppelin-solidity/contracts/crowdsale/emission/MintedCrowdsale.sol";
 import "./PostKYCCrowdsale.sol";
+import "./TokenVesting.sol";
 import "./GoForItToken.sol";
 
 
@@ -26,9 +27,8 @@ contract GoForItTokenSale is PostKYCCrowdsale, MintedCrowdsale {
     uint public constant SALE_CLOSING_TIME     = 2000000000;  // 201X-00-00 00:00:00 CEST
 
     // addresses token shares are minted to in finalization
-    address public preSaleVestingContract;
-    address public teamAdvisorVestingContract;
-    address public companyVestingContract;
+    TokenVesting public oneYearVesting;
+    TokenVesting public twoYearVesting;
 
     // Amount of token available for purchase
     uint public remainingTokensForSale;
@@ -40,33 +40,16 @@ contract GoForItTokenSale is PostKYCCrowdsale, MintedCrowdsale {
     /// @dev Constructor
     /// @param _token A GoForItToken
     /// @param _rate the initial rate.
-    /// @param _preSaleVestingContract Ethereum address of Presale vesting contract
-    /// @param _teamAdvisorVestingContract Ethereum address of Team and Advisors vesting contract
-    /// @param _companyVestingContract Ethereum address of company vesting contract
     /// @param _wallet MultiSig wallet address the ETH is forwarded to.
     constructor(
         GoForItToken _token,
         uint _rate,
-        address _preSaleVestingContract,
-        address _teamAdvisorVestingContract,
-        address _companyVestingContract,
         address _wallet
     )
         public
         Crowdsale(_rate, _wallet, _token)
         TimedCrowdsale(SALE_OPENING_TIME, SALE_CLOSING_TIME)
     {
-
-        // Sanity check of addresses
-        require(_preSaleVestingContract != address(0)
-                && _teamAdvisorVestingContract != address(0)
-                && _companyVestingContract != address(0));
-
-
-        preSaleVestingContract = _preSaleVestingContract;
-        teamAdvisorVestingContract = _teamAdvisorVestingContract;
-        companyVestingContract = _companyVestingContract;
-
         remainingTokensForSale = TOTAL_TOKEN_CAP_OF_SALE;
     }
 
@@ -110,15 +93,19 @@ contract GoForItTokenSale is PostKYCCrowdsale, MintedCrowdsale {
     function finalization() internal {
         require(hasClosed());
 
-        GoForItToken(token).mint(preSaleVestingContract, TOKEN_SHARE_OF_PRESALE);
-        GoForItToken(token).mint(teamAdvisorVestingContract, TOKEN_SHARE_OF_ADVISORS);
-        GoForItToken(token).mint(companyVestingContract, TOKEN_SHARE_OF_COMPANY);
+        oneYearVesting = new TokenVesting(GoForItToken(token), now + 365 days);
+        oneYearVesting.transferOwnership(owner);
+        GoForItToken(token).mint(oneYearVesting, TOKEN_SHARE_OF_COMPANY);
+        GoForItToken(token).mint(oneYearVesting, TOKEN_SHARE_OF_PRESALE);
 
-        GoForItToken(token).mint(teamAdvisorVestingContract, (TOKEN_SHARE_OF_TEAM *75)/100);
+        twoYearVesting = new TokenVesting(GoForItToken(token), now + 730 days);  // = 2 yrs
+        twoYearVesting.transferOwnership(owner);
+        GoForItToken(token).mint(twoYearVesting, TOKEN_SHARE_OF_ADVISORS);
+        GoForItToken(token).mint(twoYearVesting, (TOKEN_SHARE_OF_TEAM *75)/100);  // = 75%
+
+
         GoForItToken(token).mint(wallet, (TOKEN_SHARE_OF_TEAM  *25)/100);
-
         GoForItToken(token).mint(wallet, TOKEN_SHARE_OF_BOUNTY);
-
 
         GoForItToken(token).finishMinting();
         GoForItToken(token).unpause();
