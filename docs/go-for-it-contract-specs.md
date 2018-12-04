@@ -10,11 +10,11 @@ The token contract emits the standard ERC20 events including a transfer event to
 We rely on the broadly trusted Open Zeppelin v1.12.0 implementation of an ERC20 compliant Token. The following extensions are used:
 
 
-Capped and Mintable
--------------------
+Mintable
+--------
 
 Tokens are minted on demand by the Crowdsale contract.
-Therefore the ownership of the token contract has to be transferred to the token sale contract. The minting of tokens is capped at 12,500,000,000. by the crowdsale contract.
+Therefore the ownership of the token contract has to be transferred to the token sale contract.
 
 Pausable
 --------
@@ -22,7 +22,7 @@ Pausable
 Transfer of tokens is paused on construction of the token contract.
 Transfer of tokens is unpaused on finalization of the token sale
 contract.
-No transfer of tokens is possible until finalization of the token sale.
+No transfer of tokens is possible before finalization of the token sale.
 
 Burnable
 --------
@@ -40,29 +40,11 @@ Crowdsale Contract
 
 The Crowdsale contract is a Minted and Finalizable Crowd sale from the Open Zeppelin framework (v1.12.0).
 
-Post KYC crowd sale
--------------------
-
-The token sale contract uses a new scheme for KYC verification. Every investor is able to invest ETH into the crowdsale but tokens are only minted after the KYC of the sending address is verified.
-If an unverified investor sends ETH, tokens are not minted but the amount of pending tokens will be stored and issued when the address is verified by the owner of the token sale contract as long as the token cap of the sale is not exceeded.
-The verification is done by the owner of the crowdsale contract.
-The verification function should process multiple addresses in one transaction.
-Once an address is verified it can invest and the token purchase will be processed instantly. Investors who send ETH and do not provide KYC information or investors that do not meet KYC requirements, can withdraw their investment after the end of the crowd sale.
-
-
-Set Rate
---------
-
-The token sale contract provides a function that enables the token
-contract owner to set the Token price at any time.
-The price represents the Token per ETH rate. With a target
-price of 0.0004 € per Token we will have a rate of
-approximately 250,000 according to a price of approximately 100 € per ETH.
-There is a sanity check, that allows to change the rate only by one order of magnitude up or down.
-
-
 Token pools
 -----------
+
+The crowdsale is divided into different pools.
+The minting of tokens is capped at 12,500,000,000. by the crowdsale contract.
 
   |Pool            |           Cap |distribution time                               |
   |----------------|---------------|------------------------------------------------|
@@ -77,21 +59,44 @@ Token pools
   |Token Cap       |12,500,000,000 |                                                |
 
 
-KYC verification
-----------------
+
+
+Post KYC crowd sale
+-------------------
+
+The token sale contract uses a new scheme for KYC verification. Every investor is able to invest ETH into the crowdsale but tokens are only minted after the KYC of the sending address is verified.
+If an unverified investor sends ETH, tokens are not minted but the amount of pending tokens will be stored and issued when the address is verified by the owner of the token sale contract as long as the token cap of the sale is not exceeded.
+The verification is done by the owner of the crowdsale contract.
+The verification function should process multiple addresses in one transaction.
+Once an address is verified it can invest and the token purchase will be processed instantly. Investors who send ETH and do not provide KYC information or investors that do not meet KYC requirements, can withdraw their investment after the end of the crowd sale.
 
 After the end of the Crowdsale investors have time to pass the KYC requirements until the finalization function is  called.
+
+Set Rate
+--------
+
+The token sale contract provides a function that enables the token
+contract owner to set the Token price at any time.
+The price represents the Token per ETH rate. With a target
+price of 0.0004 € per Token we will have a rate of
+approximately 250,000 according to a price of approximately 100 € per ETH.
+There is a sanity check, that allows to change the rate only by one order of magnitude up or down.
 
 
 Finalization
 ------------
-Company tokens will be minted to a vesting contract that will release the token after 12 month. 25% of Advisor  tokens will be minted to the company MultiSig wallet. 75% of Advisor tokens and the Team  tokens will be minted to to a vesting contract that will release the token after 24 month. Bounty tokens will be minted to the company wallet, for distribution to bounty recipients.
+Company tokens will be minted to the oneYearVesting contract, that will release the token after 12 month.
+The
+
+25% of Advisor  tokens will be minted to the company MultiSig wallet.
+75% of Advisor tokens and the Team  tokens will be minted to to a vesting contract that will release the token after 24 month. Bounty tokens will be minted to the company wallet, for distribution to bounty recipients.
 Further minting of tokens in token contract is disabled.
 Transfers are unpaused in token contract.
 The ownership of the token contract is not transferred. The token sale contract is useless from now on.
 The token contract has no owner capable of acting, which means the token is not pausable.
 It is possible to prolong the KYC period by waiting with the call of the finalization function.
 The finalization function can only be called once successfully.
+
 
 MultiSignature Wallets
 ======================
@@ -107,13 +112,17 @@ The following requirements have to be fulfilled for deployment of the MultiSig w
 |Prize of Token             | GoForIt | List of owner addresses of the MultiSig wallet  |
 
 
-Vesting contracts
-=================
-There will be 3 Vesting contracts.
+Token vesting contract
+======================
+There will be 2 Vesting contracts one for a vesting period of 1 year and one for a period of two years.
+The vesting contracts will be deployed by the crowdsale during finalization.
+The owner of a vesting contract can enter the beneficiaries and amount of the beneficiary.
 
-The Team and Advisor vesting contract will have a vesting period of 24 month and hold 75% of the Advisor tokens and all the Team tokens. The beneficiary of the vesting contract will be the company wallet.
-The company vesting contract will have a vesting period of 12 month and hold all the Company tokens. The beneficiary of the vesting contract will be the company wallet.
-The presale vesting contract will have a vesting period of 12 month and hold all presale token. The owner of the vesting contract can enter the beneficiaries and amount of the investors that participated in the presale. After the end of the vesting period the beneficiaries can call a function to withdraw their tokens from the vesting contract.
+The one year vesting contract will hold all the presale investors token and company tokens.
+The twoYearVesting contract will hold 75% of the Advisor tokens and all the Team tokens.
+After the end of the vesting period the beneficiaries can call a function to withdraw their tokens from the vesting contract.
+There will be a function to withdraw the token for any beneficiary that can be called by the owner.
+There will be a function to retrieve tokens that that allows the owner to withdraw any tokens that are not withdrawn by the beneficiary after one year.
 
 Project Timeline
 ================
@@ -127,7 +136,6 @@ Project Timeline
   |                      | Transfer of token ownership to token sale contract|
   |                      | deployment of                                     |
   |                      | Etherscan code verification                       |
-  |                      | Deployment of vesting and multisignature contract |
   |           201?-??-?? | Start of Crowdsale                                |
   |           201?-??-?? | End of Crowdsale                                  |
   |           201?-??-?? | Finalization                                      |
@@ -144,10 +152,10 @@ The following requirements have to be fulfilled at deployment time
 |Name of Token              | GoForIt | Goin Token                               |
 |Symbol of Token            | GoForIt | GOI                                      |
 |Prize of Token             | GoForIt | 0,0004 €                                 |
-|Opening time of Crowdsale  | GoForIt |                                          |
-|Closing time of Crowdsale  | GoForIt |                                          |
+|Opening time of Crowdsale  | GoForIt | ?                                        |
+|Closing time of Crowdsale  | GoForIt | ?                                        |
 |Owner of Crowdsale contract| GoForIt |0x????????????????????????????????????????|
-|Owner of vesting contracts | GoForIt |0x????????????????????????????????????????|
+
 
 
 Deployment method
