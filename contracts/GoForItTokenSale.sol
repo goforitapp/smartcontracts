@@ -13,7 +13,8 @@ import "./GoForItToken.sol";
 contract GoForItTokenSale is PostKYCCrowdsale, MintedCrowdsale {
 
     // Maxmimum number of tokens sold
-    uint public constant TOTAL_TOKEN_CAP_OF_SALE = 1250000000e18;  // = 1.250.000.000 e18
+    uint public constant TOTAL_TOKEN_CAP_OF_SALE =  12500000000e18;  // = 1.250.000.000 e18
+    uint public constant TOTAL_TOKEN_CAP         = 125000000000e18;  // =12.500.000.000 e18
 
     // Extra tokens minted upon finalization
     uint public constant TOKEN_SHARE_OF_PRESALE  =  5511842425e18;  // =  5.511.842.425 e18
@@ -23,7 +24,7 @@ contract GoForItTokenSale is PostKYCCrowdsale, MintedCrowdsale {
     uint public constant TOKEN_SHARE_OF_BOUNTY   =   181250000e18;  // =    181.250.000 e18
 
     // Date/time constants
-    uint public constant SALE_OPENING_TIME     = 1000000000;  // 201X-00-00 00:00:00 CEST
+    uint public constant SALE_OPENING_TIME     = 1600000000;  // 201X-00-00 00:00:00 CEST
     uint public constant SALE_CLOSING_TIME     = 2000000000;  // 201X-00-00 00:00:00 CEST
 
     // addresses token shares are minted to in finalization

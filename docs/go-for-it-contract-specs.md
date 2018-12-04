@@ -14,7 +14,7 @@ Capped and Mintable
 -------------------
 
 Tokens are minted on demand by the Crowdsale contract.
-Therefore the ownership of the token contract has to be transferred to the token sale contract. The minting of tokens is capped at 12,500,000,000.
+Therefore the ownership of the token contract has to be transferred to the token sale contract. The minting of tokens is capped at 12,500,000,000. by the crowdsale contract.
 
 Pausable
 --------
@@ -35,17 +35,18 @@ Minting and pausing functions are restricted to the token contract owner. The ow
 The ownership of the token contract remains with the Crowdsale contract after finalization, so the Token will not be pausable or mintable after finalization.
 
 
-Token Sale Contract
+Crowdsale Contract
 ===================
 
-The Token sale contract is a Minted and Finalizable Crowd sale from the Open Zeppelin framework (v1.12.0).
+The Crowdsale contract is a Minted and Finalizable Crowd sale from the Open Zeppelin framework (v1.12.0).
 
 Post KYC crowd sale
 -------------------
 
-The token sale contract uses a new scheme for KYC verification. Every investor is able to invest ETH into the crowd sale but tokens are only minted after the KYC of the sending address is verified.
+The token sale contract uses a new scheme for KYC verification. Every investor is able to invest ETH into the crowdsale but tokens are only minted after the KYC of the sending address is verified.
 If an unverified investor sends ETH, tokens are not minted but the amount of pending tokens will be stored and issued when the address is verified by the owner of the token sale contract as long as the token cap of the sale is not exceeded.
-The verification should process multiple addresses in one transaction.
+The verification is done by the owner of the crowdsale contract.
+The verification function should process multiple addresses in one transaction.
 Once an address is verified it can invest and the token purchase will be processed instantly. Investors who send ETH and do not provide KYC information or investors that do not meet KYC requirements, can withdraw their investment after the end of the crowd sale.
 
 
@@ -99,11 +100,12 @@ The Company wallet will be a Multisignature contracts. For the MultiSig wallet w
 The following requirements have to be fulfilled for deployment of the MultiSig wallet.
 
 
-|Requirement                | Source  |       Value                              |
-|---------------------------|---------|------------------------------------------|
-|Name of Token              | GoForIt | Goin Token                               |
-|Symbol of Token            | GoForIt | GOI                                      |
-|Prize of Token             | GoForIt | 0,0004 €                                 |
+|Requirement                | Source  |       Value                                     |
+|---------------------------|---------|-------------------------------------------------|
+|Name of Token              | GoForIt | Number of addresses in the MultiSig wallet      |
+|Symbol of Token            | GoForIt | Number of verifications to confirm transactions |
+|Prize of Token             | GoForIt | List of owner addresses of the MultiSig wallet  |
+
 
 Vesting contracts
 =================
