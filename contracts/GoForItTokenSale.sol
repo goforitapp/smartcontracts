@@ -15,9 +15,10 @@ contract GoForItTokenSale is PostKYCCrowdsale, MintedCrowdsale {
     uint public constant TOTAL_TOKEN_CAP_OF_SALE = 1250000000e18;  // = 1.250.000.000 e18
 
     // Extra tokens minted upon finalization
+    uint public constant TOKEN_SHARE_OF_PRESALE  =  5511842425e18;  // =  5.511.842.425 e18
     uint public constant TOKEN_SHARE_OF_TEAM     =  1100000000e18;  // =  1.100.000.000 e18
     uint public constant TOKEN_SHARE_OF_ADVISORS =  1087500000e18;  // =  1.087.500.000 e18
-    uint public constant TOKEN_SHARE_OF_COMPANY   =  3369407575e18;  // =  3.369.407.575 e18
+    uint public constant TOKEN_SHARE_OF_COMPANY  =  3369407575e18;  // =  3.369.407.575 e18
     uint public constant TOKEN_SHARE_OF_BOUNTY   =   181250000e18;  // =    181.250.000 e18
 
     // Date/time constants
@@ -25,10 +26,9 @@ contract GoForItTokenSale is PostKYCCrowdsale, MintedCrowdsale {
     uint public constant SALE_CLOSING_TIME     = 2000000000;  // 201X-00-00 00:00:00 CEST
 
     // addresses token shares are minted to in finalization
-    address public teamAddress;
-    address public advisorsAddress;
-    address public companyAddress;
-    address public bountyAddress;
+    address public preSaleVestingContract;
+    address public teamAdvisorVestingContract;
+    address public companyVestingContract;
 
     // Amount of token available for purchase
     uint public remainingTokensForSale;
@@ -40,62 +40,34 @@ contract GoForItTokenSale is PostKYCCrowdsale, MintedCrowdsale {
     /// @dev Constructor
     /// @param _token A GoForItToken
     /// @param _rate the initial rate.
-    /// @param _teamAddress Ethereum address of Team
-    /// @param _advisorsAddress Ethereum address of Advisors
-    /// @param _companyAddress Ethereum address of company
-    /// @param _bountyAddress A GoForItTokenBounty
+    /// @param _preSaleVestingContract Ethereum address of Presale vesting contract
+    /// @param _teamAdvisorVestingContract Ethereum address of Team and Advisors vesting contract
+    /// @param _companyVestingContract Ethereum address of company vesting contract
     /// @param _wallet MultiSig wallet address the ETH is forwarded to.
     constructor(
         GoForItToken _token,
         uint _rate,
-        address _teamAddress,
-        address _advisorsAddress,
-        address _companyAddress,
-        address _bountyAddress,
+        address _preSaleVestingContract,
+        address _teamAdvisorVestingContract,
+        address _companyVestingContract,
         address _wallet
     )
         public
         Crowdsale(_rate, _wallet, _token)
         TimedCrowdsale(SALE_OPENING_TIME, SALE_CLOSING_TIME)
     {
-        // Token sanity check
-        require(_token.cap() >= TOTAL_TOKEN_CAP_OF_SALE
-                                + TOKEN_SHARE_OF_TEAM
-                                + TOKEN_SHARE_OF_ADVISORS
-                                + TOKEN_SHARE_OF_COMPANY
-                                + TOKEN_SHARE_OF_BOUNTY);
 
         // Sanity check of addresses
-        require(_teamAddress != address(0)
-                && _advisorsAddress != address(0)
-                && _companyAddress != address(0)
-                && _bountyAddress != address(0));
+        require(_preSaleVestingContract != address(0)
+                && _teamAdvisorVestingContract != address(0)
+                && _companyVestingContract != address(0));
 
 
-        teamAddress = _teamAddress;
-        advisorsAddress = _advisorsAddress;
-        companyAddress = _companyAddress;
-        bountyAddress = _bountyAddress;
+        preSaleVestingContract = _preSaleVestingContract;
+        teamAdvisorVestingContract = _teamAdvisorVestingContract;
+        companyVestingContract = _companyVestingContract;
 
         remainingTokensForSale = TOTAL_TOKEN_CAP_OF_SALE;
-    }
-
-    /// @dev Distribute presale
-    /// @param _investors  list of investor addresses
-    /// @param _amounts  list of token amounts purchased by investors
-    function distributePresale(address[] _investors, uint[] _amounts) public onlyOwner {
-        require(!hasClosed());
-        require(_investors.length == _amounts.length);
-
-        uint totalAmount = 0;
-
-        for (uint i = 0; i < _investors.length; ++i) {
-            GoForItToken(token).mint(_investors[i], _amounts[i]);
-            totalAmount = totalAmount.add(_amounts[i]);
-        }
-
-        require(remainingTokensForSale >= totalAmount);
-        remainingTokensForSale = remainingTokensForSale.sub(totalAmount);
     }
 
     /// @dev Set rate
@@ -138,10 +110,15 @@ contract GoForItTokenSale is PostKYCCrowdsale, MintedCrowdsale {
     function finalization() internal {
         require(hasClosed());
 
-        GoForItToken(token).mint(teamAddress, TOKEN_SHARE_OF_TEAM);
-        GoForItToken(token).mint(advisorsAddress, TOKEN_SHARE_OF_ADVISORS);
-        GoForItToken(token).mint(companyAddress, TOKEN_SHARE_OF_COMPANY);
-        GoForItToken(token).mint(bountyAddress, TOKEN_SHARE_OF_BOUNTY);
+        GoForItToken(token).mint(preSaleVestingContract, TOKEN_SHARE_OF_PRESALE);
+        GoForItToken(token).mint(teamAdvisorVestingContract, TOKEN_SHARE_OF_ADVISORS);
+        GoForItToken(token).mint(companyVestingContract, TOKEN_SHARE_OF_COMPANY);
+
+        GoForItToken(token).mint(teamAdvisorVestingContract, (TOKEN_SHARE_OF_TEAM *75)/100);
+        GoForItToken(token).mint(wallet, (TOKEN_SHARE_OF_TEAM  *25)/100);
+
+        GoForItToken(token).mint(wallet, TOKEN_SHARE_OF_BOUNTY);
+
 
         GoForItToken(token).finishMinting();
         GoForItToken(token).unpause();

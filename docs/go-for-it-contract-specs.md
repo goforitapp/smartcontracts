@@ -46,7 +46,7 @@ Post KYC crowd sale
 The token sale contract uses a new scheme for KYC verification. Every investor is able to invest ETH into the crowd sale but tokens are only minted after the KYC of the sending address is verified.
 If an unverified investor sends ETH, tokens are not minted but the amount of pending tokens will be stored and issued when the address is verified by the owner of the token sale contract as long as the token cap of the sale is not exceeded.
 The verification should process multiple addresses in one transaction.
-Once an address is verified it can invest and the token purchase will be processed instantly. Investors who send ETH and do not provide KYC information or investors that do not meet KYC requirements, can withdraw their investment after finalization of the crowd sale.
+Once an address is verified it can invest and the token purchase will be processed instantly. Investors who send ETH and do not provide KYC information or investors that do not meet KYC requirements, can withdraw their investment after the end of the crowd sale.
 
 
 Set Rate
