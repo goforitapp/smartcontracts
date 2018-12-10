@@ -1,14 +1,14 @@
 Abstract
 ========
 
-Technical specifications for the smart contracts of the Go For It Crowdsale.
+Technical specifications for the smart contracts of the GoForIt Crowdsale.
 
 
 Token Contract
 ===========
 
-The token contract implements a ERC20 standard token. It is named "Goin Token".
-Ticker symbol will be GOI.
+The token contract implements an ERC20 standard token. It is named "Goin Token".
+The ticker symbol will be GOI.
 The number of decimals will be 18 to keep the resolution identical to ETH.
 We rely on the broadly trusted Open Zeppelin v1.12.0 implementation of an ERC20 compliant Token. The following extensions are used:
 
@@ -65,12 +65,12 @@ Post KYC crowd sale
 -------------------
 
 The token sale contract uses a new scheme for KYC verification for investors in the public sale. Every investor is able to invest ETH into the crowdsale but tokens are only minted after the KYC of the sending address is verified.
-If an unverified investor sends ETH, tokens are not minted but the amount of pending tokens will be stored and issued when the address is verified by the owner of the token sale contract as long as the token cap of the sale is not exceeded.
+If an unverified investor sends ETH, tokens are not minted but the number of pending tokens will be stored and issued when the address is verified by the owner of the token sale contract as long as the token cap of the sale is not exceeded.
 The verification is done by the owner of the crowdsale contract.
 The verification function should process multiple addresses in one transaction.
-Once an address is verified it can invest and the token purchase will be processed instantly. Investors who send ETH and do not get verified or investors that do not meet KYC requirements, can withdraw their investment after the end of the crowd sale.
+Once an address is verified it can invest and the token purchase will be processed instantly. Investors who send ETH and do not get verified or investors that do not meet KYC requirements can withdraw their investment after the end of the crowd sale.
 
-After the end of the Crowdsale investors have time to pass the KYC requirements until the finalization function is  called.
+After the end of the Crowdsale investors have time to pass the KYC requirements until the finalization function is called.
 
 Set Rate
 --------
@@ -80,22 +80,22 @@ contract owner to set the Token price at any time.
 The price represents the Token per ETH rate. With a target
 price of 0.0004 € per Token we will have a rate of
 approximately 250,000 according to a price of approximately 100 € per ETH.
-There is a sanity check, that allows to change the rate only by one order of magnitude up or down.
+There is a sanity check, that allows to changing the rate only by one order of magnitude up or down.
 
 
 Finalization
 ------------
 
-Two vesting contracts will be created. one with 12 month and one with 24 month vesting period.
-Company tokens will be minted to the oneYearVesting contract, that will release the token after 12 month.
-Presale tokens will be minted to the oneYearVesting contract, that will release the token after 12 month.
+Two vesting contracts will be created. One with 12 months and one with 24 month vesting period.
+Company tokens will be minted to the oneYearVesting contract, that will release the token after 12 months.
+Presale tokens will be minted to the oneYearVesting contract, that will release the token after 12 months.
 
-25% of Advisor  tokens will be minted to the company MultiSig wallet.
-75% of Advisor tokens  will be minted to the 24 month vesting contract.
+25% of Advisor tokens will be minted to the company MultiSig wallet.
+75% of Advisor tokens will be minted to the 24 months vesting contract.
 Team  tokens will be minted to the 24 month vesting contract.
 Bounty tokens will be minted to the company wallet, for distribution to bounty recipients.
-Further minting of tokens in token contract is disabled.
-Transfers are unpaused in token contract.
+Further minting of tokens in the token contract is disabled.
+Transfers are unpaused in the token contract.
 The ownership of the token contract is not transferred. The token sale contract is useless from now on.
 The token contract has no owner capable of acting, which means the token is not pausable.
 It is possible to prolong the KYC period by waiting with the call of the finalization function.
@@ -122,12 +122,12 @@ Token vesting contract
 There will be 2 Vesting contracts one for a vesting period of 1 year and one for a period of two years.
 The vesting contracts will be deployed by the crowdsale during finalization.
 The owner of a vesting contract can enter the beneficiaries and amount of the beneficiary.
-After the end of the vesting period the beneficiaries can call a function to withdraw their tokens from the vesting contract.
+After the end of the vesting period, the beneficiaries can call a function to withdraw their tokens from the vesting contract.
 There will be a function to withdraw the token for any beneficiary that can be called by the owner.
-There will be a function to retrieve tokens that that allows the owner to withdraw any tokens that are not withdrawn by the beneficiary after one year.
+There will be a function to retrieve tokens that allows the owner to withdraw any tokens that are not withdrawn by the beneficiary after one year.
 
-The one year vesting contract will hold all the presale investors token and company tokens.
-The twoYearVesting contract will hold 75% of the Advisor tokens and all the Team tokens.
+The one-year vesting contract will hold all the presale investors token and company tokens.
+The two-year vesting contract will hold 75% of the Advisor tokens and all the Team tokens.
 
 
 Project Timeline
