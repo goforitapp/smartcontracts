@@ -49,10 +49,10 @@ Token pools
 The crowdsale is divided into different pools.
 The minting of tokens is capped at 12,500,000,000. by the crowdsale contract.
 
-  |Pool            |           Cap |distribution time                               |
+  |Pool            |           Cap |Distribution time                               |
   |----------------|---------------|------------------------------------------------|
-  |private sale    | 5,511,842,425 | at finalization into vesting contract 12 month |
-  |public sale     | 1,250,000,000 | between start and end date of Crowdsale        |
+  |Private sale    | 5,511,842,425 | at finalization into vesting contract 12 month |
+  |Public sale     | 1,250,000,000 | between start and end date of Crowdsale        |
   |Bounty          |   181,250,000 | at finalization to company wallet              |
   |Team            | 1,100,000,000 | at finalization into vesting contract 24 month |
   |Company         | 3,369,407,575 | at finalization into vesting contract 12 month |
