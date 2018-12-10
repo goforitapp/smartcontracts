@@ -4,7 +4,6 @@ Abstract
 Technical specifications for the smart contracts of the Go For It Crowdsale.
 
 
-
 Token Contract
 ===========
 
@@ -12,13 +11,13 @@ The token contract implements a ERC20 standard token. It is named "Goin Token".
 Ticker symbol will be GOI.
 The number of decimals will be 18 to keep the resolution identical to ETH.
 We rely on the broadly trusted Open Zeppelin v1.12.0 implementation of an ERC20 compliant Token. The following extensions are used:
-The token contract emits the standard ERC20 events including a transfer event to address 0x0 in case of minting tokens.
 
 Mintable
 --------
 
 Tokens are minted on demand by the Crowdsale contract.
 Therefore the ownership of the token contract will be transferred to the token sale contract after deployment.
+The token contract emits the standard ERC20 events including a transfer event to address 0x0 in case of minting tokens.
 
 Pausable
 --------
@@ -61,9 +60,6 @@ The minting of tokens is capped at 12,500,000,000. by the crowdsale contract.
   |Advisors 25%    |   271,875,000 | at finalization to company wallet              |
   |Advisors 75%    |   815,625,000 | at finalization into vesting contract 24 month |              
   |Total Cap       |12,500,000,000 |                                                |
-
-
-
 
 Post KYC crowd sale
 -------------------

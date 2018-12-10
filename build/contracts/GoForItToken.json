@@ -485,7 +485,7 @@
         "id": 2,
         "nodeType": "ImportDirective",
         "scope": 25,
-        "sourceUnit": 1751,
+        "sourceUnit": 1754,
         "src": "25:87:0",
         "symbolAliases": [],
         "unitAlias": ""
@@ -496,7 +496,7 @@
         "id": 3,
         "nodeType": "ImportDirective",
         "scope": 25,
-        "sourceUnit": 1853,
+        "sourceUnit": 1856,
         "src": "113:87:0",
         "symbolAliases": [],
         "unitAlias": ""
@@ -510,10 +510,10 @@
               "id": 4,
               "name": "MintableToken",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1750,
+              "referencedDeclaration": 1753,
               "src": "276:13:0",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_MintableToken_$1750",
+                "typeIdentifier": "t_contract$_MintableToken_$1753",
                 "typeString": "contract MintableToken"
               }
             },
@@ -528,10 +528,10 @@
               "id": 6,
               "name": "PausableToken",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1852,
+              "referencedDeclaration": 1855,
               "src": "291:13:0",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_PausableToken_$1852",
+                "typeIdentifier": "t_contract$_PausableToken_$1855",
                 "typeString": "contract PausableToken"
               }
             },
@@ -541,14 +541,14 @@
           }
         ],
         "contractDependencies": [
-          1293,
-          1473,
-          1569,
-          1612,
-          1644,
-          1750,
-          1852,
-          2161
+          1296,
+          1476,
+          1572,
+          1615,
+          1647,
+          1753,
+          1855,
+          2164
         ],
         "contractKind": "contract",
         "documentation": "@title GoForItToken\n @author Sicos et al.",
@@ -556,14 +556,14 @@
         "id": 24,
         "linearizedBaseContracts": [
           24,
-          1852,
-          1293,
-          1750,
-          1473,
-          2161,
-          1569,
-          1612,
-          1644
+          1855,
+          1296,
+          1753,
+          1476,
+          2164,
+          1572,
+          1615,
+          1647
         ],
         "name": "GoForItToken",
         "nodeType": "ContractDefinition",
@@ -713,7 +713,7 @@
                       "name": "pause",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1277,
+                      "referencedDeclaration": 1280,
                       "src": "474:5:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$__$returns$__$",
@@ -800,7 +800,7 @@
         "id": 2,
         "nodeType": "ImportDirective",
         "scope": 25,
-        "sourceUnit": 1751,
+        "sourceUnit": 1754,
         "src": "25:87:0",
         "symbolAliases": [],
         "unitAlias": ""
@@ -811,7 +811,7 @@
         "id": 3,
         "nodeType": "ImportDirective",
         "scope": 25,
-        "sourceUnit": 1853,
+        "sourceUnit": 1856,
         "src": "113:87:0",
         "symbolAliases": [],
         "unitAlias": ""
@@ -825,10 +825,10 @@
               "id": 4,
               "name": "MintableToken",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1750,
+              "referencedDeclaration": 1753,
               "src": "276:13:0",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_MintableToken_$1750",
+                "typeIdentifier": "t_contract$_MintableToken_$1753",
                 "typeString": "contract MintableToken"
               }
             },
@@ -843,10 +843,10 @@
               "id": 6,
               "name": "PausableToken",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1852,
+              "referencedDeclaration": 1855,
               "src": "291:13:0",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_PausableToken_$1852",
+                "typeIdentifier": "t_contract$_PausableToken_$1855",
                 "typeString": "contract PausableToken"
               }
             },
@@ -856,14 +856,14 @@
           }
         ],
         "contractDependencies": [
-          1293,
-          1473,
-          1569,
-          1612,
-          1644,
-          1750,
-          1852,
-          2161
+          1296,
+          1476,
+          1572,
+          1615,
+          1647,
+          1753,
+          1855,
+          2164
         ],
         "contractKind": "contract",
         "documentation": "@title GoForItToken\n @author Sicos et al.",
@@ -871,14 +871,14 @@
         "id": 24,
         "linearizedBaseContracts": [
           24,
-          1852,
-          1293,
-          1750,
-          1473,
-          2161,
-          1569,
-          1612,
-          1644
+          1855,
+          1296,
+          1753,
+          1476,
+          2164,
+          1572,
+          1615,
+          1647
         ],
         "name": "GoForItToken",
         "nodeType": "ContractDefinition",
@@ -1028,7 +1028,7 @@
                       "name": "pause",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1277,
+                      "referencedDeclaration": 1280,
                       "src": "474:5:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$__$returns$__$",
@@ -1095,5 +1095,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-12-04T18:11:37.308Z"
+  "updatedAt": "2018-12-10T13:12:59.730Z"
 }
