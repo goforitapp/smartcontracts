@@ -67,11 +67,11 @@ contract PostKYCCrowdsale is FinalizableCrowdsale {
     function withdrawInvestment() public {
         Investment storage investment = investments[msg.sender];
 
-        require(!investment.isVerified);
+        require(!investment.isVerified, "Investor was verified already");
 
         uint totalWeiInvested = investment.totalWeiInvested;
 
-        require(totalWeiInvested > 0);
+        require(totalWeiInvested > 0, "Investment is zero");
 
         investment.totalWeiInvested = 0;
         investment.pendingTokenAmount = 0;
@@ -90,7 +90,7 @@ contract PostKYCCrowdsale is FinalizableCrowdsale {
     /// @param _weiAmount the wei amount invested
     function _preValidatePurchase(address _beneficiary, uint _weiAmount)  internal {
         // We only want the msg.sender to buy tokens
-        require(_beneficiary == msg.sender);
+        require(_beneficiary == msg.sender, "Beneficiary is not the buyer");
 
         super._preValidatePurchase(_beneficiary, _weiAmount);
     }

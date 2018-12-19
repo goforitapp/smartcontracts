@@ -59,7 +59,7 @@ contract GoForItTokenSale is PostKYCCrowdsale, MintedCrowdsale {
     function setRate(uint _newRate) public onlyOwner {
         // A rate change by a magnitude order of ten and above is rather a typo than intention.
         // If it was indeed desired, several setRate transactions have to be sent.
-        require(rate / 10 < _newRate && _newRate < 10 * rate);
+        require(rate / 10 < _newRate && _newRate < 10 * rate, "Rate change is too big");
 
         rate = _newRate;
 
@@ -68,7 +68,7 @@ contract GoForItTokenSale is PostKYCCrowdsale, MintedCrowdsale {
 
     /// @dev unverified investors can withdraw their money only after the GoForIt Sale ended
     function withdrawInvestment() public {
-        require(hasClosed());
+        require(hasClosed(), "Sale has not closed yet");
 
         super.withdrawInvestment();
     }
@@ -84,7 +84,7 @@ contract GoForItTokenSale is PostKYCCrowdsale, MintedCrowdsale {
     /// @param _beneficiary an investors Ethereum address
     /// @param _tokenAmount token amount to deliver
     function _deliverTokens(address _beneficiary, uint _tokenAmount) internal {
-        require(remainingTokensForSale >= _tokenAmount);
+        require(remainingTokensForSale >= _tokenAmount, "Not enough tokens available");
         remainingTokensForSale = remainingTokensForSale.sub(_tokenAmount);
 
         super._deliverTokens(_beneficiary, _tokenAmount);
@@ -92,7 +92,7 @@ contract GoForItTokenSale is PostKYCCrowdsale, MintedCrowdsale {
 
     /// @dev Finalization
     function finalization() internal {
-        require(hasClosed());
+        require(hasClosed(), "Sale has not closed yet");
 
         oneYearVesting = new TokenVesting(GoForItToken(token), now + 365 days);
         oneYearVesting.transferOwnership(owner);

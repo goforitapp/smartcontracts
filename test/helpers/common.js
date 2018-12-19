@@ -15,7 +15,7 @@ module.exports = (() => {
             return new web3.BigNumber("0x" + digits.join(""));
         };
         const uint = bits => bytes(bits !== undefined ? bits >> 3 : 256);
-        const address = () => uint(160);
+        const address = () => "0x" + ("0".repeat(40) + uint(160).toString(16)).slice(-40);
 
         return {bytes, uint, address};
     })();
