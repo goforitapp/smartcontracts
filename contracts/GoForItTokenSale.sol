@@ -101,11 +101,11 @@ contract GoForItTokenSale is PostKYCCrowdsale, MintedCrowdsale {
 
         twoYearVesting = new TokenVesting(GoForItToken(token), now + 730 days);  // = 2 yrs
         twoYearVesting.transferOwnership(owner);
-        GoForItToken(token).mint(twoYearVesting, TOKEN_SHARE_OF_ADVISORS);
-        GoForItToken(token).mint(twoYearVesting, (TOKEN_SHARE_OF_TEAM *75)/100);  // = 75%
+        GoForItToken(token).mint(twoYearVesting, TOKEN_SHARE_OF_TEAM);
+        GoForItToken(token).mint(twoYearVesting, (TOKEN_SHARE_OF_ADVISORS *75)/100);  // = 75%
 
 
-        GoForItToken(token).mint(wallet, (TOKEN_SHARE_OF_TEAM  *25)/100);
+        GoForItToken(token).mint(wallet, (TOKEN_SHARE_OF_ADVISORS  *25)/100);
         GoForItToken(token).mint(wallet, TOKEN_SHARE_OF_BOUNTY);
 
         GoForItToken(token).finishMinting();
