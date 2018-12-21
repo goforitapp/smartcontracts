@@ -19,3 +19,13 @@ On a first terminal:
 On a second terminal:
 
 	node_modules/.bin/truffle test --network ganache
+
+### To run the coverage test
+
+    node_modules/.bin/solidity-coverage
+
+### To run the solidity linters
+
+    node_modules/.bin/solhint contracts/*
+    node_modules/.bin/solium -d contracts
+
