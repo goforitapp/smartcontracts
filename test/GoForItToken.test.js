@@ -12,7 +12,7 @@ contract("GoForItToken", ([owner, anyone]) => {
     const TOKEN_SYMBOL = "GOI";
     const TOKEN_DECIMALS = 18;
 
-    describe("deployment", () => {
+    describe("Deployment", () => {
         let token;
 
         it("succeeds", async () => {

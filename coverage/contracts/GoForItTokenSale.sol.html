@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for contracts/GoForItTokenSale.sol</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">contracts/</a> GoForItTokenSale.sol
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>19/19</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">90% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>9/10</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>6/6</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>23/23</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">34×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22×</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">28×</span>
+<span class="cline-any cline-yes">26×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">pragma solidity 0.4.24;
+&nbsp;
+import "../node_modules/openzeppelin-solidity/contracts/token/ERC20/ERC20.sol";
+import "../node_modules/openzeppelin-solidity/contracts/crowdsale/distribution/FinalizableCrowdsale.sol";
+import "../node_modules/openzeppelin-solidity/contracts/crowdsale/emission/MintedCrowdsale.sol";
+import "./PostKYCCrowdsale.sol";
+import "./TokenVesting.sol";
+import "./GoForItToken.sol";
+&nbsp;
+&nbsp;
+/// @title GoForItTokenSale
+/// @author Sicos et al.
+contract GoForItTokenSale is PostKYCCrowdsale, MintedCrowdsale {
+&nbsp;
+    // Maxmimum number of tokens sold
+    uint public constant TOTAL_TOKEN_CAP_OF_SALE =  1250000000e18;  // = 1.250.000.000 e18
+    uint public constant TOTAL_TOKEN_CAP         = 12500000000e18;  // =12.500.000.000 e18
+&nbsp;
+    // Extra tokens minted upon finalization
+    uint public constant TOKEN_SHARE_OF_PRESALE  =  5511842425e18;  // =  5.511.842.425 e18
+    uint public constant TOKEN_SHARE_OF_TEAM     =  1100000000e18;  // =  1.100.000.000 e18
+    uint public constant TOKEN_SHARE_OF_ADVISORS =  1087500000e18;  // =  1.087.500.000 e18
+    uint public constant TOKEN_SHARE_OF_COMPANY  =  3369407575e18;  // =  3.369.407.575 e18
+    uint public constant TOKEN_SHARE_OF_BOUNTY   =   181250000e18;  // =    181.250.000 e18
+&nbsp;
+    // Date/time constants
+    uint public constant SALE_OPENING_TIME     = 1600000000;  // 201X-00-00 00:00:00 CEST
+    uint public constant SALE_CLOSING_TIME     = 2000000000;  // 201X-00-00 00:00:00 CEST
+&nbsp;
+    // address token shares is minted to upon finalization
+    TokenVesting public vesting;
+&nbsp;
+    // Amount of token available for purchase
+    uint public remainingTokensForSale;
+&nbsp;
+    /// @dev Log entry on rate changed
+    /// @param newRate the new rate
+    event RateChanged(uint newRate);
+&nbsp;
+    /// @dev Constructor
+    /// @param _token A GoForItToken
+    /// @param _rate the initial rate.
+    /// @param _wallet MultiSig wallet address the ETH is forwarded to.
+    constructor(
+        GoForItToken _token,
+        uint _rate,
+        address _wallet
+    )
+        public
+        Crowdsale(_rate, _wallet, _token)
+        TimedCrowdsale(SALE_OPENING_TIME, SALE_CLOSING_TIME)
+    {
+        remainingTokensForSale = TOTAL_TOKEN_CAP_OF_SALE;
+    }
+&nbsp;
+    /// @dev Set rate
+    /// @param _newRate the new rate
+    function setRate(uint _newRate) public onlyOwner {
+        // A rate change by a magnitude order of ten and above is rather a typo than intention.
+        // If it was indeed desired, several setRate transactions have to be sent.
+        require(rate / 10 &lt; _newRate &amp;&amp; _newRate &lt; 10 * rate, "Rate change is too big");
+&nbsp;
+        if (rate != _newRate) {
+            rate = _newRate;
+&nbsp;
+            emit RateChanged(_newRate);
+        }
+    }
+&nbsp;
+    /// @dev unverified investors can withdraw their money only after the GoForIt Sale ended
+    function withdrawInvestment() public {
+        require(hasClosed(), "Sale has not closed yet");
+&nbsp;
+        super.withdrawInvestment();
+    }
+&nbsp;
+    /// @dev Is the GoForIt main sale ongoing?
+    /// @return bool
+    function goForItSaleOngoing() public view returns (bool) {
+        return SALE_OPENING_TIME &lt;= now &amp;&amp; now &lt;= SALE_CLOSING_TIME;
+    }
+&nbsp;
+    /// @dev Deliver tokens
+    /// @param _beneficiary an investors Ethereum address
+    /// @param _tokenAmount token amount to deliver
+    function _deliverTokens(address _beneficiary, uint _tokenAmount) internal {
+        require(remainingTokensForSale &gt;= _tokenAmount, "Not enough tokens available");
+        remainingTokensForSale = remainingTokensForSale.sub(_tokenAmount);
+&nbsp;
+        super._deliverTokens(_beneficiary, _tokenAmount);
+    }
+&nbsp;
+    /// @dev Finalization
+    function finalization() internal {
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(hasClosed(), "Sale has not closed yet");
+&nbsp;
+        vesting = new TokenVesting(GoForItToken(token), now + 730 days);  // = 2 yrs
+        vesting.transferOwnership(owner);
+        GoForItToken(token).mint(vesting, TOKEN_SHARE_OF_ADVISORS);
+        GoForItToken(token).mint(vesting, TOKEN_SHARE_OF_TEAM * 75 / 100);  // = 75%
+&nbsp;
+        GoForItToken(token).mint(wallet, TOKEN_SHARE_OF_PRESALE);
+        GoForItToken(token).mint(wallet, TOKEN_SHARE_OF_COMPANY);
+        GoForItToken(token).mint(wallet, TOKEN_SHARE_OF_BOUNTY);
+        GoForItToken(token).mint(wallet, TOKEN_SHARE_OF_TEAM * 25 / 100);
+&nbsp;
+        GoForItToken(token).finishMinting();
+        GoForItToken(token).unpause();
+&nbsp;
+        super.finalization();
+    }
+&nbsp;
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Dec 21 2018 18:20:17 GMT+0100 (Mitteleuropäische Normalzeit)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

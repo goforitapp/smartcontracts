@@ -39,6 +39,8 @@ contract PostKYCCrowdsale is FinalizableCrowdsale {
     /// @dev Verify investors
     /// @param _investors list of investors' Ethereum addresses
     function verifyInvestors(address[] _investors) public onlyOwner {
+        require(!isFinalized, "Sale was finalized already");
+
         for (uint i = 0; i < _investors.length; ++i) {
             address investor = _investors[i];
             Investment storage investment = investments[investor];

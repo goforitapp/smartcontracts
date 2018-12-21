@@ -27,9 +27,8 @@ contract GoForItTokenSale is PostKYCCrowdsale, MintedCrowdsale {
     uint public constant SALE_OPENING_TIME     = 1600000000;  // 201X-00-00 00:00:00 CEST
     uint public constant SALE_CLOSING_TIME     = 2000000000;  // 201X-00-00 00:00:00 CEST
 
-    // addresses token shares are minted to in finalization
-    TokenVesting public oneYearVesting;
-    TokenVesting public twoYearVesting;
+    // address token shares is minted to upon finalization
+    TokenVesting public vesting;
 
     // Amount of token available for purchase
     uint public remainingTokensForSale;
@@ -61,9 +60,11 @@ contract GoForItTokenSale is PostKYCCrowdsale, MintedCrowdsale {
         // If it was indeed desired, several setRate transactions have to be sent.
         require(rate / 10 < _newRate && _newRate < 10 * rate, "Rate change is too big");
 
-        rate = _newRate;
+        if (rate != _newRate) {
+            rate = _newRate;
 
-        emit RateChanged(_newRate);
+            emit RateChanged(_newRate);
+        }
     }
 
     /// @dev unverified investors can withdraw their money only after the GoForIt Sale ended
@@ -73,10 +74,9 @@ contract GoForItTokenSale is PostKYCCrowdsale, MintedCrowdsale {
         super.withdrawInvestment();
     }
 
-
     /// @dev Is the GoForIt main sale ongoing?
     /// @return bool
-    function GoForItSaleOngoing() public view returns (bool) {
+    function goForItSaleOngoing() public view returns (bool) {
         return SALE_OPENING_TIME <= now && now <= SALE_CLOSING_TIME;
     }
 
@@ -94,19 +94,15 @@ contract GoForItTokenSale is PostKYCCrowdsale, MintedCrowdsale {
     function finalization() internal {
         require(hasClosed(), "Sale has not closed yet");
 
-        oneYearVesting = new TokenVesting(GoForItToken(token), now + 365 days);
-        oneYearVesting.transferOwnership(owner);
-        GoForItToken(token).mint(oneYearVesting, TOKEN_SHARE_OF_COMPANY);
-        GoForItToken(token).mint(oneYearVesting, TOKEN_SHARE_OF_PRESALE);
+        vesting = new TokenVesting(GoForItToken(token), now + 730 days);  // = 2 yrs
+        vesting.transferOwnership(owner);
+        GoForItToken(token).mint(vesting, TOKEN_SHARE_OF_ADVISORS);
+        GoForItToken(token).mint(vesting, TOKEN_SHARE_OF_TEAM * 75 / 100);  // = 75%
 
-        twoYearVesting = new TokenVesting(GoForItToken(token), now + 730 days);  // = 2 yrs
-        twoYearVesting.transferOwnership(owner);
-        GoForItToken(token).mint(twoYearVesting, TOKEN_SHARE_OF_TEAM);
-        GoForItToken(token).mint(twoYearVesting, (TOKEN_SHARE_OF_ADVISORS *75)/100);  // = 75%
-
-
-        GoForItToken(token).mint(wallet, (TOKEN_SHARE_OF_ADVISORS  *25)/100);
+        GoForItToken(token).mint(wallet, TOKEN_SHARE_OF_PRESALE);
+        GoForItToken(token).mint(wallet, TOKEN_SHARE_OF_COMPANY);
         GoForItToken(token).mint(wallet, TOKEN_SHARE_OF_BOUNTY);
+        GoForItToken(token).mint(wallet, TOKEN_SHARE_OF_TEAM * 25 / 100);
 
         GoForItToken(token).finishMinting();
         GoForItToken(token).unpause();

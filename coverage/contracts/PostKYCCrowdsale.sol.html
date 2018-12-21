@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for contracts/PostKYCCrowdsale.sol</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">contracts/</a> PostKYCCrowdsale.sol
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>33/33</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">90% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>18/20</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>7/7</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>38/38</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">33×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-yes">29×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">29×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">29×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">29×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">40×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">38×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">35×</span>
+<span class="cline-any cline-yes">35×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">35×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">34×</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">34×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">34×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">pragma solidity 0.4.24;
+&nbsp;
+import "../node_modules/openzeppelin-solidity/contracts/ownership/Ownable.sol";
+import "../node_modules/openzeppelin-solidity/contracts/crowdsale/Crowdsale.sol";
+import "../node_modules/openzeppelin-solidity/contracts/crowdsale/distribution/FinalizableCrowdsale.sol";
+&nbsp;
+&nbsp;
+/// @title PostKYCCrowdsale
+/// @author Sicos et al.
+contract PostKYCCrowdsale is FinalizableCrowdsale {
+&nbsp;
+    struct Investment {
+        bool isVerified;         // wether or not the investor passed the KYC process
+        uint totalWeiInvested;   // total invested wei regardless of verification state
+        // amount of token an unverified investor bought. should be zero for verified investors
+        uint pendingTokenAmount;
+    }
+&nbsp;
+    // total amount of wei held by unverified investors should never be larger than this.balance
+    uint public pendingWeiAmount = 0;
+&nbsp;
+    // maps investor addresses to investment information
+    mapping(address =&gt; Investment) public investments;
+&nbsp;
+    /// @dev Log entry on investor verified
+    /// @param investor the investor's Ethereum address
+    event InvestorVerified(address investor);
+&nbsp;
+    /// @dev Log entry on tokens delivered
+    /// @param investor the investor's Ethereum address
+    /// @param amount token amount delivered
+    event TokensDelivered(address investor, uint amount);
+&nbsp;
+    /// @dev Log entry on investment withdrawn
+    /// @param investor the investor's Ethereum address
+    /// @param value the wei amount withdrawn
+    event InvestmentWithdrawn(address investor, uint value);
+&nbsp;
+    /// @dev Verify investors
+    /// @param _investors list of investors' Ethereum addresses
+    function verifyInvestors(address[] _investors) public onlyOwner {
+        require(!isFinalized, "Sale was finalized already");
+&nbsp;
+        for (uint i = 0; i &lt; _investors.length; ++i) {
+            address investor = _investors[i];
+            Investment storage investment = investments[investor];
+&nbsp;
+            if (!investment.isVerified) {
+                investment.isVerified = true;
+&nbsp;
+                emit InvestorVerified(investor);
+&nbsp;
+                uint pendingTokenAmount = investment.pendingTokenAmount;
+                // now we issue tokens to the verfied investor
+                if (pendingTokenAmount &gt; 0) {
+                    investment.pendingTokenAmount = 0;
+&nbsp;
+                    _forwardFunds(investment.totalWeiInvested);
+                    _deliverTokens(investor, pendingTokenAmount);
+&nbsp;
+                    emit TokensDelivered(investor, pendingTokenAmount);
+                }
+            }
+        }
+    }
+&nbsp;
+    /// @dev Withdraw investment
+    /// @dev Investors that are not verified can withdraw their funds
+    function withdrawInvestment() public {
+        Investment storage investment = investments[msg.sender];
+&nbsp;
+        require(!investment.isVerified, "Investor was verified already");
+&nbsp;
+        uint totalWeiInvested = investment.totalWeiInvested;
+&nbsp;
+        require(totalWeiInvested &gt; 0, "Investment is zero");
+&nbsp;
+        investment.totalWeiInvested = 0;
+        investment.pendingTokenAmount = 0;
+&nbsp;
+        pendingWeiAmount = pendingWeiAmount.sub(totalWeiInvested);
+&nbsp;
+        msg.sender.transfer(totalWeiInvested);
+&nbsp;
+        emit InvestmentWithdrawn(msg.sender, totalWeiInvested);
+&nbsp;
+        <span class="missing-if-branch" title="else path not taken" >E</span>assert(pendingWeiAmount &lt;= address(this).balance);
+    }
+&nbsp;
+    /// @dev Prevalidate purchase
+    /// @param _beneficiary the investor's Ethereum address
+    /// @param _weiAmount the wei amount invested
+    function _preValidatePurchase(address _beneficiary, uint _weiAmount)  internal {
+        // We only want the msg.sender to buy tokens
+        require(_beneficiary == msg.sender, "Beneficiary is not the buyer");
+&nbsp;
+        super._preValidatePurchase(_beneficiary, _weiAmount);
+    }
+&nbsp;
+    /// @dev Process purchase
+    /// @param _tokenAmount the token amount purchased
+    function _processPurchase(address, uint _tokenAmount) internal {
+        Investment storage investment = investments[msg.sender];
+        investment.totalWeiInvested = investment.totalWeiInvested.add(msg.value);
+&nbsp;
+        if (investment.isVerified) {
+            // If the investor's KYC is already verified we issue the tokens imediatly
+            _deliverTokens(msg.sender, _tokenAmount);
+            emit TokensDelivered(msg.sender, _tokenAmount);
+        } else {
+            // If the investor's KYC is not verified we store the pending token amount
+            investment.pendingTokenAmount = investment.pendingTokenAmount.add(_tokenAmount);
+            pendingWeiAmount = pendingWeiAmount.add(msg.value);
+        }
+    }
+&nbsp;
+    /// @dev Forward funds
+    function _forwardFunds() internal {
+        // Ensure the investor was verified, i.e. his purchased tokens were delivered,
+        // before forwarding funds.
+        if (investments[msg.sender].isVerified) {
+            super._forwardFunds();
+        }
+    }
+&nbsp;
+    /// @dev Forward funds
+    /// @param _weiAmount the amount to be transfered
+    function _forwardFunds(uint _weiAmount) internal {
+        pendingWeiAmount = pendingWeiAmount.sub(_weiAmount);
+        wallet.transfer(_weiAmount);
+    }
+&nbsp;
+    /// @dev Postvalidate purchase
+    /// @param _weiAmount the amount invested
+    function _postValidatePurchase(address, uint _weiAmount)  internal {
+        super._postValidatePurchase(msg.sender, _weiAmount);
+        // checking invariant
+        <span class="missing-if-branch" title="else path not taken" >E</span>assert(pendingWeiAmount &lt;= address(this).balance);
+    }
+&nbsp;
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Dec 21 2018 18:20:17 GMT+0100 (Mitteleuropäische Normalzeit)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

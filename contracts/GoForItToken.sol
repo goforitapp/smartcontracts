@@ -4,6 +4,7 @@ import "../node_modules/openzeppelin-solidity/contracts/token/ERC20/MintableToke
 import "../node_modules/openzeppelin-solidity/contracts/token/ERC20/PausableToken.sol";
 import "../node_modules/openzeppelin-solidity/contracts/token/ERC20/BurnableToken.sol";
 
+
 /// @title GoForItToken
 /// @author Sicos et al.
 contract GoForItToken is MintableToken, PausableToken, BurnableToken {

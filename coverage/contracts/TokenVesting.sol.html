@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for contracts/TokenVesting.sol</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">contracts/</a> TokenVesting.sol
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>22/22</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">85.71% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>12/14</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>6/6</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>23/23</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">pragma solidity 0.4.24;
+&nbsp;
+import "./GoForItToken.sol";
+&nbsp;
+&nbsp;
+/// @title  Token vesting contract
+/// @author Sicos et al.
+contract TokenVesting is Ownable {
+&nbsp;
+    uint256 public endOfVestingPeriod;  // the block time from which tokens can be withdrawn
+&nbsp;
+    uint256 public totalAllocation;
+    mapping (address =&gt; uint256) public allocations;
+&nbsp;
+    GoForItToken public token;
+&nbsp;
+    /// Log event on token allocation
+    event Allocation(address indexed beneficiary, uint amount);
+&nbsp;
+    /// Log event on token withdrawal
+    event Withdrawal(address indexed beneficiary, uint amount);
+&nbsp;
+    /// @dev constructor
+    /// @param _token Token contract address for GoForIt token
+    /// @param _endOfVestingPeriod Block timestamp (Unix epoch) when tokens become unlocked
+    constructor(GoForItToken _token, uint _endOfVestingPeriod) public {
+        token = _token;
+        endOfVestingPeriod = _endOfVestingPeriod;
+    }
+&nbsp;
+    /// @dev Allow to selfdestruct contract and sending remaining tokens to owner
+    ///      if presale investors didn't withdraw within one year.
+    function destruct() public onlyOwner {
+        require(now &gt;= endOfVestingPeriod + 365 days, "Destruction not possible yet");
+&nbsp;
+        uint256 balance = token.balanceOf(this);
+&nbsp;
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (balance &gt; 0) {
+            token.transfer(owner, balance);
+        }
+&nbsp;
+        selfdestruct(owner);
+    }
+&nbsp;
+    /// @dev Allocates tokens to presale investors
+    /// @param _beneficiaries Addresses of founders
+    /// @param _amounts Numbers of tokens allocated to each founder
+    function allocate(address[] _beneficiaries, uint[] _amounts) public onlyOwner {
+        require(_beneficiaries.length == _amounts.length, "Given array lengths differ");
+&nbsp;
+        for (uint i = 0; i &lt; _beneficiaries.length; ++i) {
+            // No need for SafeMath here.
+            totalAllocation = totalAllocation + _amounts[i] - allocations[_beneficiaries[i]];
+            allocations[_beneficiaries[i]] = _amounts[i];
+&nbsp;
+            emit Allocation(_beneficiaries[i], _amounts[i]);
+        }
+&nbsp;
+        require(totalAllocation &lt;= token.balanceOf(this), "Allocation exceeds balance");
+    }
+&nbsp;
+    /// @dev Allow founders to withdraw tokens that were allocated for them
+    function withdraw() public {
+        _withdraw(msg.sender);
+    }
+&nbsp;
+    /// @dev Allow the owner to withdraw allocated tokens for the benefit of founders
+    /// @param _beneficiaries List of founder addresses
+    function withdrawFor(address[] _beneficiaries) public onlyOwner {
+        for (uint i = 0; i &lt; _beneficiaries.length; ++i) {
+            _withdraw(_beneficiaries[i]);
+        }
+    }
+&nbsp;
+    /// @dev Internal withdraw function
+    /// @param _beneficiary Address of a founder
+    function _withdraw(address _beneficiary) internal {
+        require(now &gt;= endOfVestingPeriod, "Tokens are still locked");
+&nbsp;
+        uint amount = allocations[_beneficiary];
+&nbsp;
+        if (amount &gt; 0) {
+            allocations[_beneficiary] = 0;
+            totalAllocation -= amount;  // No need for SafeMath here.
+&nbsp;
+            <span class="missing-if-branch" title="else path not taken" >E</span>require(token.transfer(_beneficiary, amount), "Token transfer failed");
+&nbsp;
+            emit Withdrawal(_beneficiary, amount);
+        }
+    }
+&nbsp;
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Dec 21 2018 18:20:17 GMT+0100 (Mitteleuropäische Normalzeit)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>
