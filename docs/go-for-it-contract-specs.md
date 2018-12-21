@@ -29,7 +29,8 @@ No transfer of tokens is possible before finalization of the token sale.
 
 Burnable
 --------
-The token will not be burnable.
+The token be burnable using the BurnableToken from OpenZeppelin.
+
 
 Owned
 -----
@@ -51,11 +52,11 @@ The minting of tokens is capped at 12,500,000,000. by the crowdsale contract.
 
   |Pool            |           Cap |Distribution time                               |
   |----------------|---------------|------------------------------------------------|
-  |Private sale    | 5,511,842,425 | at finalization into vesting contract 12 month |
+  |Private sale    | 5,511,842,425 | at finalization to company wallet              |
   |Public sale     | 1,250,000,000 | between start and end date of Crowdsale        |
   |Bounty          |   181,250,000 | at finalization to company wallet              |
   |Team            | 1,100,000,000 | at finalization into vesting contract 24 month |
-  |Company         | 3,369,407,575 | at finalization into vesting contract 12 month |
+  |Company         | 3,369,407,575 | at finalization to company wallet              |
   |Advisors        | 1,087,500,000 | The advisor pool is split into two parts       |
   |Advisors 25%    |   271,875,000 | at finalization to company wallet              |
   |Advisors 75%    |   815,625,000 | at finalization into vesting contract 24 month |              
@@ -87,8 +88,8 @@ Finalization
 ------------
 
 Two vesting contracts will be created. One with 12 months and one with 24 month vesting period.
-Company tokens will be minted to the oneYearVesting contract, that will release the token after 12 months.
-Presale tokens will be minted to the oneYearVesting contract, that will release the token after 12 months.
+Company tokens will be minted to company MultiSig wallet
+Presale tokens will be minted to company MultiSig wallet
 
 25% of Advisor tokens will be minted to the company MultiSig wallet.
 75% of Advisor tokens will be minted to the 24 months vesting contract.
@@ -119,14 +120,13 @@ The following requirements have to be fulfilled for deployment of the MultiSig w
 
 Token vesting contract
 ======================
-There will be 2 Vesting contracts one for a vesting period of 1 year and one for a period of two years.
-The vesting contracts will be deployed by the crowdsale during finalization.
+There will be a Vesting contracts with a vesting period of  two years.
+The vesting contract will be deployed by the crowdsale during finalization.
 The owner of a vesting contract can enter the beneficiaries and amount of the beneficiary.
 After the end of the vesting period, the beneficiaries can call a function to withdraw their tokens from the vesting contract.
 There will be a function to withdraw the token for any beneficiary that can be called by the owner.
 There will be a function to retrieve tokens that allows the owner to withdraw any tokens that are not withdrawn by the beneficiary after one year.
 
-The one-year vesting contract will hold all the presale investors token and company tokens.
 The two-year vesting contract will hold 75% of the Advisor tokens and all the Team tokens.
 
 
