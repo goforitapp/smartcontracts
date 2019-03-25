@@ -103,7 +103,7 @@ It is possible to prolong the KYC period by waiting with the call of the finaliz
 The finalization function can only be called once successfully.
 
 
-MultiSignature Wallets
+Multisignature Wallets
 ======================
 The Company wallet will be a Multisignature contracts. For the MultiSig wallet we will use the latest version of the Gnosis (ConsenSys) Multisignature Wallets (https://github.com/gnosis/MultiSigWallet)
 
